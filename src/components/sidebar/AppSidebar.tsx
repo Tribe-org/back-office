@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 import { type MenuItem } from "@/types";
 
@@ -72,18 +76,14 @@ const items: MenuItem = [
   },
 ];
 
-interface AppSidebarProps {
-  page?: string;
-}
-
-export default function AppSidebar({ page = "none" }: AppSidebarProps) {
-  console.log(`page: ${page}`);
+export default function AppSidebar() {
+  const pathname = usePathname();
 
   return (
     <Sidebar>
       <SidebarContent>
         {items.map((item) => {
-          return <Menu key={item.groupTitle} page={page} item={item} />;
+          return <Menu key={item.groupTitle} page={pathname} item={item} />;
         })}
       </SidebarContent>
     </Sidebar>

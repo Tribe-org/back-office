@@ -15,7 +15,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
+import { checkPage, cn } from "@/lib/utils";
 import { type MenuItem } from "@/types";
 
 interface SubMenuProps {
@@ -25,6 +25,9 @@ interface SubMenuProps {
 }
 
 export default function SubMenu({ title, menu, page }: SubMenuProps) {
+  const defaultOpen = menu
+    .filter(({ url }) => Boolean(url))
+    .some(({ url }) => checkPage(url as string, page));
   const [isOpened, setIsOpened] = useState(false);
 
   const handleToggleMenu = () => {
@@ -32,7 +35,11 @@ export default function SubMenu({ title, menu, page }: SubMenuProps) {
   };
 
   return (
-    <Collapsible className="group/collapsible" onClick={handleToggleMenu}>
+    <Collapsible
+      className="group/collapsible"
+      defaultOpen={defaultOpen}
+      onClick={handleToggleMenu}
+    >
       <SidebarMenuItem>
         <CollapsibleTrigger asChild>
           <SidebarMenuButton className="flex items-center justify-between">
@@ -47,7 +54,7 @@ export default function SubMenu({ title, menu, page }: SubMenuProps) {
         <CollapsibleContent>
           <SidebarMenuSub>
             {menu.map(({ title, url = "#" }) => {
-              const isActive = url.includes(page);
+              const isActive = checkPage(url, page);
 
               return (
                 <SidebarMenuSubItem

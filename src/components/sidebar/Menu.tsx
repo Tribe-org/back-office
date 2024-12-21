@@ -9,7 +9,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
+import { checkPage, cn } from "@/lib/utils";
 import { type MenuItem } from "@/types";
 
 import SubMenu from "./SubMenu";
@@ -28,7 +28,7 @@ export default function Menu({ item, page }: SidebarMenuProps) {
       <SidebarGroupContent>
         <SidebarMenu>
           {item.menu.map(({ title, menu, url = "#" }) => {
-            const isActive = url.includes(page);
+            const isActive = checkPage(url, page);
             const hasSubMenu = Array.isArray(menu);
 
             if (hasSubMenu) {
