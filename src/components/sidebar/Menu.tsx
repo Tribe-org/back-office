@@ -20,7 +20,9 @@ interface SidebarMenuProps {
 export default function Menu({ item }: SidebarMenuProps) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{item.groupTitle}</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-tribe-informative">
+        {item.groupTitle}
+      </SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {item.menu.map(({ title, menu, url = "#" }) => {

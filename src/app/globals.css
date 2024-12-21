@@ -1,3 +1,5 @@
+@import "@tribe-org/design-system/dist/index.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
