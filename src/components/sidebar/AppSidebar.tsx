@@ -1,78 +1,85 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-import Link from "next/link";
+import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
+import { type MenuItem } from "@/types";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import {
-  Sidebar,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
+import Menu from "./Menu";
 
-// Menu items.
-const items = [
+const items: MenuItem = [
   {
-    title: "회원 관리",
-    url: "/",
-    icon: Home,
+    groupTitle: "관리자 메인",
+    menu: [
+      { title: "관리자 신청", url: "#" },
+      { title: "관리자 목록", url: "#" },
+    ],
   },
   {
-    title: "모임 관리",
-    url: "/inbox",
-    icon: Inbox,
+    groupTitle: "사용자 관리",
+    menu: [
+      {
+        title: "회원 관리",
+        menu: [
+          { title: "회원 조회", url: "#" },
+          { title: "회원 목록", url: "#" },
+        ],
+      },
+    ],
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    groupTitle: "콘텐츠 관리",
+    menu: [
+      { title: "검색 관리", menu: [{ title: "추천 검색어", url: "#" }] },
+      { title: "배너 관리", menu: [{ title: "배너 등록", url: "#" }] },
+      {
+        title: "모임 관리",
+        menu: [
+          { title: "모임 현황", url: "#" },
+          { title: "폐지 모임", url: "#" },
+          { title: "신고 모임", url: "#" },
+        ],
+      },
+    ],
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    groupTitle: "메시지 관리",
+    menu: [
+      {
+        title: "푸시 관리",
+        menu: [
+          { title: "푸시 조회", url: "#" },
+          { title: "푸시 발송", url: "#" },
+        ],
+      },
+    ],
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    groupTitle: "고객 응대 관리",
+    menu: [
+      { title: "공지사항", url: "#" },
+      { title: "FAQ", url: "#" },
+    ],
+  },
+  {
+    groupTitle: "전시 관리",
+    menu: [
+      {
+        title: "모임 목록",
+        menu: [
+          { title: "인기 모임 관리", url: "#" },
+          { title: "추천 모임 관리", url: "#" },
+          { title: "신규 모임 관리", url: "#" },
+        ],
+      },
+    ],
   },
 ];
 
 export default function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarMenu>
+      <SidebarContent>
         {items.map((item) => {
-          return (
-            <Collapsible
-              key={item.title}
-              defaultOpen
-              className="group/collapsible"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton>Getting Started</SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    <SidebarMenuSubItem className="text-sm">
-                      <Link href={item.url} className="flex items-center gap-2">
-                        {item.title}
-                      </Link>
-                    </SidebarMenuSubItem>
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
-          );
+          return <Menu key={item.groupTitle} item={item} />;
         })}
-      </SidebarMenu>
+      </SidebarContent>
     </Sidebar>
   );
 }
