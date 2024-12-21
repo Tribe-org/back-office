@@ -600,10 +600,10 @@
   dependencies:
     tslib "^2.8.0"
 
-"@tribe-org/design-system@^0.0.11":
-  version "0.0.11"
-  resolved "https://npm.pkg.github.com/download/@Tribe-org/design-system/0.0.11/93f3822a1ed5844277ea13526346f7b08b423ec5#93f3822a1ed5844277ea13526346f7b08b423ec5"
-  integrity sha512-sc9IoPbbJPtvLSxvRC00VWS/TgLtvp4U6IExsppjtTbgDvUpgmPQ7CUYlQn0ANHzMPAcGOWp2vVxTFktQwiawQ==
+"@tribe-org/design-system@^0.0.13":
+  version "0.0.13"
+  resolved "https://npm.pkg.github.com/download/@Tribe-org/design-system/0.0.13/7ab93c1bbf8b988bd7c4108f3d3f5788f9d0ceb8#7ab93c1bbf8b988bd7c4108f3d3f5788f9d0ceb8"
+  integrity sha512-ufJZm6q8fzuRoFcQeGAMRxTpUtYth+to6ySwFnZmZ6VMsCZTXQehegPmnYgbQ2slVaOfrInAxxSHNB6LrAwwVQ==
   dependencies:
     react "^18.3.1"
     react-dom "^18.3.1"

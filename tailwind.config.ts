@@ -3,6 +3,8 @@ import type { Config } from "tailwindcss";
 
 const theme = tailwindConfig.theme!.extend!;
 
+console.log(theme.fontFamily);
+
 export default {
   darkMode: ["class"],
   content: [

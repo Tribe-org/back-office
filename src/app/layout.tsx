@@ -1,17 +1,9 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 
 import AppSidebar from "@/components/sidebar/AppSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-
-const pretendard = localFont({
-  src: "../../fonts/PretendardVariable.woff2",
-  display: "swap",
-  weight: "45 920",
-  variable: "--font-pretendard",
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={pretendard.variable}>
-      <body className={`${pretendard.className} antialiased`}>
+    <html lang="en">
+      <body>
         <SidebarProvider>
           <AppSidebar />
           <main className="relative">
