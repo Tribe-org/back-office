@@ -17,7 +17,7 @@ const items: MenuItem = [
       {
         title: "회원 관리",
         menu: [
-          { title: "회원 조회", url: "#" },
+          { title: "회원 조회", url: "/users" },
           { title: "회원 목록", url: "#" },
         ],
       },
@@ -72,12 +72,18 @@ const items: MenuItem = [
   },
 ];
 
-export default function AppSidebar() {
+interface AppSidebarProps {
+  page?: string;
+}
+
+export default function AppSidebar({ page = "none" }: AppSidebarProps) {
+  console.log(`page: ${page}`);
+
   return (
     <Sidebar>
       <SidebarContent>
         {items.map((item) => {
-          return <Menu key={item.groupTitle} item={item} />;
+          return <Menu key={item.groupTitle} page={page} item={item} />;
         })}
       </SidebarContent>
     </Sidebar>

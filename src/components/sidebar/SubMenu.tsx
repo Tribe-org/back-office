@@ -15,14 +15,16 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 import { type MenuItem } from "@/types";
 
 interface SubMenuProps {
   title: string;
   menu: MenuItem[number]["menu"];
+  page: string;
 }
 
-export default function SubMenu({ title, menu }: SubMenuProps) {
+export default function SubMenu({ title, menu, page }: SubMenuProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   const handleToggleMenu = () => {
@@ -44,13 +46,20 @@ export default function SubMenu({ title, menu }: SubMenuProps) {
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SidebarMenuSub>
-            {menu.map(({ title, url = "#" }) => (
-              <SidebarMenuSubItem key={title} className="text-xs">
-                <Link href={url} className="flex items-center gap-2">
-                  {title}
-                </Link>
-              </SidebarMenuSubItem>
-            ))}
+            {menu.map(({ title, url = "#" }) => {
+              const isActive = url.includes(page);
+
+              return (
+                <SidebarMenuSubItem
+                  key={title}
+                  className={cn("text-xs", isActive && "font-bold underline")}
+                >
+                  <Link href={url} className="flex items-center gap-2">
+                    {title}
+                  </Link>
+                </SidebarMenuSubItem>
+              );
+            })}
           </SidebarMenuSub>
         </CollapsibleContent>
       </SidebarMenuItem>
