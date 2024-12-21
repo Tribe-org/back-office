@@ -1,16 +1,16 @@
 import "./globals.css";
 
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 import type { Metadata } from "next";
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+import localFont from "next/font/local";
+
+import AppSidebar from "@/components/sidebar/AppSidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
+const pretendard = localFont({
+  src: "../../fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
 });
 
 export const metadata: Metadata = {
@@ -24,11 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={pretendard.variable}>
+      <body className={`${pretendard.className} antialiased`}>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="relative">
+            {children}
+            <SidebarTrigger className="absolute left-0 top-0" />
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );
